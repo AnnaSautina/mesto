@@ -1,0 +1,24 @@
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 282px;
+  height: 50px;
+  margin: -7px auto 0;
+  padding: 0;
+  border: 1px solid #fff;
+  background-color: #000;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 880px) {
+  .add-button {
+    width: 150px;
+    margin: 0 0 0 20px;
+  }
+}
+
+.add-button:hover {
+  opacity: 0.6;
+}

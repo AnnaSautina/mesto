@@ -1,7 +1,7 @@
 .header__logo {
   position: relative;
   top: 0;
-  left: 27px;
+  left: 25px;
   margin: 0;
   padding: 0;
   width: 103.74px;
@@ -11,7 +11,7 @@
 @media screen and (min-width: 880px) {
   .header__logo {
     left: 0;
-    width: 142px;
+    width: 145px;
     height: 33px;
   }
 }

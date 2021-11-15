@@ -1,0 +1,16 @@
+.element__footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 240px;
+  height: 29px;
+  margin: 25px 21px 25px;
+  padding: 0;
+}
+
+@media screen and (min-width: 880px) {
+  .element__footer {
+    margin-top: 26px;
+  }
+}

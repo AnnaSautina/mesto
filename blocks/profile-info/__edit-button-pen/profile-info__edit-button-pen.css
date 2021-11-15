@@ -1,0 +1,11 @@
+.profile-info__edit-button-pen {
+  width: 7.5px;
+  height: 7.5px;
+}
+
+@media screen and (min-width: 880px) {
+  .profile-info__edit-button-pen {
+    width: 10px;
+    height: 10px;
+  }
+}

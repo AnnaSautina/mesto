@@ -3,8 +3,10 @@
   height: 19px;
   margin: 0;
   padding: 0;
+  border: none;
   background-image: url(../../../images/like.svg);
   box-shadow: none;
+  background-color: #fff;;
   transition: 0.3s;
 }
 

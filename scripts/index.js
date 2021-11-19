@@ -1,36 +1,29 @@
-const pen = document.querySelector('.profile-info__edit-button');
+const editButton = document.querySelector('.profile-info__edit-button');
 const popup = document.querySelector('.popup');
 const buttonClose = popup.querySelector('.popup__to-close');
 const popupOverlay = popup.querySelector('.popup__overlay');
+let nameUser = document.getElementsByClassName('profile-info__name')[0];
+let activityUser = document.getElementsByClassName('profile-info__activity')[0];
+let inputs = document.querySelectorAll('input');
+const userForm = document.querySelector('.popup__form');
 
 function showPopup() {
   popup.classList.add('popup_opened');
-  document.documentElement.style.overflow = 'hidden';
-  document.body.scroll = "no";
+  inputs[0].value = nameUser.textContent;
+  inputs[1].value = activityUser.textContent;
 }
+editButton.addEventListener('click', showPopup);
 
 function closePopup() {
   popup.classList.remove('popup_opened');
-  document.documentElement.style.overflow = 'auto';
-  document.body.scroll = "yes";
 }
-
-pen.addEventListener('click', showPopup);
 buttonClose.addEventListener('click', closePopup);
 popupOverlay.addEventListener('click', closePopup);
 
-let nameUser = document.getElementById('user-name').textContent;
-let activityUser = document.getElementById('user-activity').textContent;
-let inputs = document.querySelectorAll('input');
-const popupElement = document.querySelector('.popup__container');
-
-popupElement.addEventListener('submit', formSubmitHandler);
-inputs[0].value = nameUser;
-inputs[1].value = activityUser;
-
 function formSubmitHandler (evt) {
   evt.preventDefault();
-  document.getElementById('user-name').textContent = inputs[0].value;
-  document.getElementById('user-activity').textContent = inputs[1].value;
+  nameUser.textContent = inputs[0].value;
+  activityUser.textContent = inputs[1].value;
   closePopup();
 }
+userForm.addEventListener('submit', formSubmitHandler);

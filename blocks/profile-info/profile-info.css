@@ -1,24 +1,28 @@
 .profile-info {
   display: grid;
-  grid-template-columns: minmax(min-content,max-content) 18px;
-  grid-template-rows: 120px 1fr 1fr;
+  grid-template-columns: 1fr 37px;
+  grid-template-rows: 1fr 1fr;
   grid-template-areas:
-  "avatar ."
   "name edit"
   "activity .";
-  column-gap: 10px;
-  margin: 26px 0 0 28px;
+  justify-items: center;
+  align-items: start;
+  row-gap: 7px;
+  margin: 28px 0 0 37px;
   padding: 0;
+  min-height: 54px;
+  max-width: 254px;
+
 }
 
 @media screen and (min-width: 880px) {
   .profile-info {
-    margin: 0;
-    grid-template-columns: 120px 1fr 24px;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-    "avatar name edit"
-    "avatar activity .";
-    column-gap: 18px;
+    margin: 0 0 0 28px;
+    min-height: 78px;
+    grid-template-columns: minmax(min-content, 336px) 24px;
+    grid-template-rows: 48px 22px;
+    column-gap: 20px;
+    row-gap: 0;
+    justify-items: start;
   }
 }

@@ -2,15 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 43px auto 0;
+  margin: 43px 0 0;
   padding: 0;
-  width: 238px;
+  width: 100%;
   height: 46px;
   background-color: #000;
   border: none;
   border-radius: 2px;
   color: #fff;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -25,7 +25,6 @@
 @media screen and (min-width: 880px){
   .popup__save {
     margin-top: 48px;
-    width: 358px;
     height: 50px;
     font-size: 18px;
     line-height: 22px;

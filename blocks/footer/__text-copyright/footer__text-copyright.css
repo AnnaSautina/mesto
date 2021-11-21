@@ -1,4 +1,4 @@
-.text-copyright {
+.footer__text-copyright {
   margin: 0;
   padding: 0;
   font-family: 'Inter', 'Arial', sans-serif;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (min-width: 880px) {
-  .text-copyright {
+  .footer__text-copyright {
     font-size: 18px;
     line-height: 22px;
   }

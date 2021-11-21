@@ -10,7 +10,7 @@
 
 @media screen and (min-width: 880px) {
   .content {
-    width: 880px;
+    justify-content: center;
     margin: 0 auto;
   }
 }

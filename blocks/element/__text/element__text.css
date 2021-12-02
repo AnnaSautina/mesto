@@ -12,3 +12,7 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+.element__text::first-letter {
+  text-transform: uppercase;
+}

@@ -7,13 +7,10 @@
   padding: 0;
   width: 18px;
   height: 19px;
-  background-image: url(../../../images/delete.svg);
+  background: none;
+  background-image: url(../../../images/trashcan.svg);
   border: none;
   box-shadow: none;
   transition: 0.3s;
   cursor: pointer;
-}
-
-.element__delete:hover {
-  opacity: 0.6;
 }

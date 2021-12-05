@@ -1,0 +1,12 @@
+.popup__container_view {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+  background: none;
+  border-radius: 0px;
+  box-shadow: none;
+  z-index: 4;
+}

@@ -45,27 +45,30 @@ const popupOverlayView = popupView.querySelector('.popup__overlay');
 
 const userForm = popupUser.querySelector('.popup__form');
 const mestoForm = popupMesto.querySelector('.popup__form');
+const popupViewTitle = document.querySelector('.popup__subtitle');
+const popupViewPhoto = document.querySelector('.popup__photo');
 
-let nameUser = document.getElementsByClassName('profile-info__name')[0];
-let activityUser = document.getElementsByClassName('profile-info__activity')[0];
-let inputs = document.querySelectorAll('input');
-
+const nameUser = document.querySelector('.profile-info__name');
+const activityUser = document.querySelector('.profile-info__activity');
+let inputNameUser = userForm.querySelector('.popup__input-text_name');
+let inputActivityUser = userForm.querySelector('.popup__input-text_activity');
+let inputNameMesto = document.getElementById('nameMesto');
+let inputLinkPicture = document.getElementById('linkPicture');
 
 // Создаем карточку из template
-function СreateCard(item) {
+function createCard(item) {
   let itemContainer = itemTemplate.content.cloneNode(true); //li
-  itemContainer.querySelector('.element__text').textContent = item.name;
-  itemContainer.querySelector('.element__photo').src = item.link;
-  itemContainer.querySelector('.element__photo').alt = item.name;
-
-  let likeButton = itemContainer.querySelector('.element__like');
-  AddLikeHandler(likeButton); //обработчик клика по сердечку
-
-  let deleteButton = itemContainer.querySelector('.element__delete');
-  AddClickHandler(deleteButton); // действия пользователя с кнопкой удаления эл.
-
   let elementPhoto = itemContainer.querySelector('.element__photo');
-  AddPhotoViewHandler(elementPhoto); // просмотр фотографии
+  let likeButton = itemContainer.querySelector('.element__like');
+  let deleteButton = itemContainer.querySelector('.element__delete');
+
+  itemContainer.querySelector('.element__text').textContent = item.name;
+  elementPhoto.src = item.link;
+  elementPhoto.alt = item.name;
+
+  addLikeHandler(likeButton); //обработчик клика по сердечку
+  addClickHandler(deleteButton); // действия пользователя с кнопкой удаления эл.
+  addPhotoViewHandler(elementPhoto); // просмотр фотографии
 
   return itemContainer; //получили карточку li
 }
@@ -73,26 +76,20 @@ function СreateCard(item) {
 // Добавляем её в DOM
 render = () => {
   cardElements.forEach((item) => {
-    listCardElement.append(СreateCard(item));
+    listCardElement.append(createCard(item));
   });
 }
 render();
 
 // Добавление/удаление лайка
-function AddLikeHandler(likeButton) {
+function addLikeHandler(likeButton) {
   likeButton.addEventListener('click', function(evt) {
     evt.target.classList.toggle('element__like_active');
   });
 }
 
 // Манипуляции с кнопкой удаления эл.
-function AddClickHandler(deleteButton) {
-  deleteButton.addEventListener('mouseover', function(evt) { //при наведении мыши
-    evt.target.classList.add('element__delete_hover');
-  });
-  deleteButton.addEventListener('mouseout', function(evt) { //при отведении мыши
-    evt.target.classList.remove('element__delete_hover');
-  });
+function addClickHandler(deleteButton) {
   deleteButton.addEventListener('click', function(evt) {
     const itemContainer = deleteButton.closest('.element');
     itemContainer.remove();
@@ -100,65 +97,67 @@ function AddClickHandler(deleteButton) {
 }
 
 // Открываем попапы форм
-function ShowPopup(popup) {
+function showPopup(popup) {
   popup.classList.add('popup_opened');
 }
-editButton.addEventListener('click', () => ShowPopup(popupUser));
-addButton.addEventListener('click', () => ShowPopup(popupMesto));
+editButton.addEventListener('click', () => showPopup(popupUser));
+addButton.addEventListener('click', () => showPopup(popupMesto));
 
 // Берём значения со стр. и вставляем в инпуты
-function TakeValues() {
-  inputs[0].value = nameUser.textContent;
-  inputs[1].value = activityUser.textContent;
+function takeValues() {
+  inputNameUser.value = nameUser.textContent;
+  inputActivityUser.value = activityUser.textContent;
 }
-editButton.addEventListener('click', TakeValues);
+editButton.addEventListener('click', takeValues);
 
 // Сохраняем введённые данные профиля на странице
-function SabmitUserFormHandler(evt) {
+function handleUserFormSubmit(evt) {
   evt.preventDefault();
-  nameUser.textContent = inputs[0].value;
-  activityUser.textContent = inputs[1].value;
-  ClosePopup(popupUser);
+  nameUser.textContent = inputNameUser.value;
+  activityUser.textContent = inputActivityUser.value;
+  closePopup(popupUser);
 }
-userForm.addEventListener('submit', SabmitUserFormHandler);
+userForm.addEventListener('submit', handleUserFormSubmit);
 
-//формируем карточку из попапа
-function CreateCardSubmitHandler(evt) {
+// Очищаем форму добавления места
+function clearValues() {
+  inputNameMesto.value = '';
+  inputLinkPicture.value = '';
+}
+
+// Формируем карточку из попапа
+function createCardSubmitHandler(evt) {
   evt.preventDefault();
 
-  let nameMesto = document.getElementById('nameMesto');
-  let linkPicture = document.getElementById('linkPicture');
-  let card = {name:nameMesto.value, link:linkPicture.value};
-  const newCard = СreateCard(card);
+  let card = {name:inputNameMesto.value, link:inputLinkPicture.value};
+  const newCard = createCard(card);
 
   listCardElement.prepend(newCard);
-  ClosePopup(popupMesto);
+  clearValues();
+  closePopup(popupMesto);
 }
-mestoForm.addEventListener('submit', CreateCardSubmitHandler); //сохраняем введённые данные места на странице
+mestoForm.addEventListener('submit', createCardSubmitHandler); //сохраняем введённые данные места на странице
 
 // Открываем попап просмотра фотографии
-function AddPhotoViewHandler(elementPhoto) {
+function addPhotoViewHandler(elementPhoto) {
   elementPhoto.addEventListener('click', function(evt) {
     const evtTarget = evt.target; //получаем родительскую карточку
 
-    let popupViewTitle = document.querySelector('.popup__subtitle');
     popupViewTitle.textContent = evtTarget.closest('.element').querySelector('.element__text').textContent;
-
-    let popupViewPhoto = document.querySelector('.popup__photo');
     popupViewPhoto.src = evtTarget.closest('.element__photo').src; //и атрибуты её элементов
     popupViewPhoto.alt = evtTarget.closest('.element').querySelector('.element__text').textContent;
 
-    ShowPopup(popupView);
+    showPopup(popupView);
   });
 }
 
 // Закрываем попапы
-function ClosePopup(popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
-buttonCloseUser.addEventListener('click', () => ClosePopup(popupUser));
-popupOverlayUser.addEventListener('click', () => ClosePopup(popupUser));
-buttonCloseMesto.addEventListener('click', () => ClosePopup(popupMesto));
-popupOverlayMesto.addEventListener('click', () => ClosePopup(popupMesto));
-buttonCloseView.addEventListener('click', () => ClosePopup(popupView));
-popupOverlayView.addEventListener('click', () => ClosePopup(popupView));
+buttonCloseUser.addEventListener('click', () => closePopup(popupUser));
+popupOverlayUser.addEventListener('click', () => closePopup(popupUser));
+buttonCloseMesto.addEventListener('click', () => closePopup(popupMesto));
+popupOverlayMesto.addEventListener('click', () => closePopup(popupMesto));
+buttonCloseView.addEventListener('click', () => closePopup(popupView));
+popupOverlayView.addEventListener('click', () => closePopup(popupView));

@@ -14,3 +14,8 @@
   transition: 0.3s;
   cursor: pointer;
 }
+
+.element__delete:hover {
+  background-image: url(../../../images/trashcan-hover.svg);
+  z-index: 5;
+}

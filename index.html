@@ -57,8 +57,8 @@
       <button class="popup__to-close" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="UserForm" class="popup__form">
-        <input name="nameUser" class="popup__input-text" type="text" placeholder="Имя" required>
-        <input name="activityUser" class="popup__input-text" type="text" placeholder="О себе" required>
+        <input required name="nameUser" class="popup__input-text popup__input-text_name" type="text" placeholder="Имя">
+        <input required name="activityUser" class="popup__input-text popup__input-text_activity" type="text" placeholder="О себе">
         <button class="popup__save" type="submit">Сохранить</button>
       </form>
     </div>
@@ -70,8 +70,8 @@
       <button class="popup__to-close" type="button"></button>
       <h2 class="popup__title">Новое место</h2>
       <form name="MestoForm" class="popup__form">
-        <input name="nameMesto" id="nameMesto" class="popup__input-text" type="text" placeholder="Название" required>
-        <input name="linkPicture" id="linkPicture" class="popup__input-text" type="text" placeholder="Ссылка на картинку" required>
+        <input required name="nameMesto" id="nameMesto" class="popup__input-text" type="text" placeholder="Название">
+        <input required name="linkPicture" id="linkPicture" class="popup__input-text" type="text" placeholder="Ссылка на картинку">
         <button class="popup__save" type="submit">Сохранить</button>
       </form>
     </div>

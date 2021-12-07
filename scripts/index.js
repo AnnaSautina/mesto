@@ -50,17 +50,17 @@ const popupViewPhoto = document.querySelector('.popup__photo');
 
 const nameUser = document.querySelector('.profile-info__name');
 const activityUser = document.querySelector('.profile-info__activity');
-let inputNameUser = userForm.querySelector('.popup__input-text_name');
-let inputActivityUser = userForm.querySelector('.popup__input-text_activity');
-let inputNameMesto = document.getElementById('nameMesto');
-let inputLinkPicture = document.getElementById('linkPicture');
+const inputNameUser = userForm.querySelector('.popup__input-text_name');
+const inputActivityUser = userForm.querySelector('.popup__input-text_activity');
+const inputNameMesto = document.getElementById('nameMesto');
+const inputLinkPicture = document.getElementById('linkPicture');
 
 // Создаем карточку из template
 function createCard(item) {
-  let itemContainer = itemTemplate.content.cloneNode(true); //li
-  let elementPhoto = itemContainer.querySelector('.element__photo');
-  let likeButton = itemContainer.querySelector('.element__like');
-  let deleteButton = itemContainer.querySelector('.element__delete');
+  const itemContainer = itemTemplate.content.cloneNode(true); //li
+  const elementPhoto = itemContainer.querySelector('.element__photo');
+  const likeButton = itemContainer.querySelector('.element__like');
+  const deleteButton = itemContainer.querySelector('.element__delete');
 
   itemContainer.querySelector('.element__text').textContent = item.name;
   elementPhoto.src = item.link;
@@ -99,16 +99,11 @@ function addClickHandler(deleteButton) {
 // Открываем попапы форм
 function showPopup(popup) {
   popup.classList.add('popup_opened');
-}
-editButton.addEventListener('click', () => showPopup(popupUser));
-addButton.addEventListener('click', () => showPopup(popupMesto));
-
-// Берём значения со стр. и вставляем в инпуты
-function takeValues() {
   inputNameUser.value = nameUser.textContent;
   inputActivityUser.value = activityUser.textContent;
 }
-editButton.addEventListener('click', takeValues);
+editButton.addEventListener('click', () => showPopup(popupUser));
+addButton.addEventListener('click', () => showPopup(popupMesto));
 
 // Сохраняем введённые данные профиля на странице
 function handleUserFormSubmit(evt) {
@@ -129,7 +124,7 @@ function clearValues() {
 function createCardSubmitHandler(evt) {
   evt.preventDefault();
 
-  let card = {name:inputNameMesto.value, link:inputLinkPicture.value};
+  const card = {name:inputNameMesto.value, link:inputLinkPicture.value};
   const newCard = createCard(card);
 
   listCardElement.prepend(newCard);
@@ -143,9 +138,9 @@ function addPhotoViewHandler(elementPhoto) {
   elementPhoto.addEventListener('click', function(evt) {
     const evtTarget = evt.target; //получаем родительскую карточку
 
-    popupViewTitle.textContent = evtTarget.closest('.element').querySelector('.element__text').textContent;
-    popupViewPhoto.src = evtTarget.closest('.element__photo').src; //и атрибуты её элементов
-    popupViewPhoto.alt = evtTarget.closest('.element').querySelector('.element__text').textContent;
+    popupViewTitle.textContent = evtTarget.alt;
+    popupViewPhoto.src = evtTarget.src; //и атрибуты её элементов
+    popupViewPhoto.alt = evtTarget.alt;
 
     showPopup(popupView);
   });

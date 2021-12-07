@@ -99,11 +99,15 @@ function addClickHandler(deleteButton) {
 // Открываем попапы форм
 function showPopup(popup) {
   popup.classList.add('popup_opened');
+}
+editButton.addEventListener('click', () => showPopup(popupUser, TakeValues()));
+addButton.addEventListener('click', () => showPopup(popupMesto));
+
+// Берём значения со стр. и вставляем в инпуты
+function TakeValues() {
   inputNameUser.value = nameUser.textContent;
   inputActivityUser.value = activityUser.textContent;
 }
-editButton.addEventListener('click', () => showPopup(popupUser));
-addButton.addEventListener('click', () => showPopup(popupMesto));
 
 // Сохраняем введённые данные профиля на странице
 function handleUserFormSubmit(evt) {

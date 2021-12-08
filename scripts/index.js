@@ -100,11 +100,14 @@ function addClickHandler(deleteButton) {
 function showPopup(popup) {
   popup.classList.add('popup_opened');
 }
-editButton.addEventListener('click', () => showPopup(popupUser, TakeValues()));
+editButton.addEventListener('click', () => {
+  showPopup(popupUser)
+  setProfileValues()
+});
 addButton.addEventListener('click', () => showPopup(popupMesto));
 
 // Берём значения со стр. и вставляем в инпуты
-function TakeValues() {
+function setProfileValues() {
   inputNameUser.value = nameUser.textContent;
   inputActivityUser.value = activityUser.textContent;
 }
